@@ -12,7 +12,8 @@ import datetime
 # https://currentmillis.com/
 
 q = queue.Queue()
-wins3 = "rtmp://143.248.55.86/live/wins3"
+#wins3 = "rtmp://143.248.55.86/live/wins3"
+wins3 = "rtmp://143.248.55.86:1913/live/wins3"
 wins2 = "rtmp://143.248.55.86:1911/live/wins2"
 wins = "rtmp://143.248.55.86:31935/live/wins"
 local_addr = "rtmp://127.0.0.1/live/wins"
@@ -47,7 +48,7 @@ def play():
             while datetime.datetime.now() - bef_show <= datetime.timedelta(milliseconds=frame_jitter):
                 time.sleep(0.001)
             if datetime.datetime.now() - bef_show >= datetime.timedelta(milliseconds=100) or True:
-                print(datetime.datetime.now().strftime("%H:%M:%S.%f"), int(q.qsize() * 33.333333333), (datetime.datetime.now() - bef_show).microseconds//1000)
+                print(datetime.datetime.now().strftime("%H:%M:%S.%f"), int(q.qsize() * 33.333333333), (datetime.datetime.now() - bef_show).microseconds//1000, t)
             bef_show = datetime.datetime.now()
             cv2.imshow("test", nparray)
             # delay = 1 if flag else 30
